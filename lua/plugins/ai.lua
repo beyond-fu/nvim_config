@@ -90,7 +90,7 @@ return {
                 -- },
                 chat = {
                     keymaps = {
-                        close = { "q" },
+                        close = { "<C-c>" },
                         --         yank_last = "<C-y>",
                         --         yank_last_code = "<C-k>",
                         --         scroll_up = "<C-u>",
