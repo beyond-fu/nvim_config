@@ -3,6 +3,23 @@ return {
         "LazyVim/LazyVim",
         opts = { colorscheme = "tokyonight-night" },
     },
+    -- cmdline tools and lsp servers
+    {
+        "williamboman/mason.nvim",
+        opts = {
+            ensure_installed = {
+                "clangd",
+                "cpptools",
+                "cspell",
+                "json-lsp",
+                "lua-language-server",
+                "markdownlint",
+                "shellcheck",
+                "pyright",
+                "shfmt",
+            },
+        },
+    },
     -- nvim-lspconfig
     {
         "neovim/nvim-lspconfig",
@@ -216,6 +233,9 @@ return {
                     nls.builtins.formatting.autopep8,    -- python formatting
                     nls.builtins.diagnostics.markdownlint,
                     nls.builtins.formatting.markdownlint,
+                    nls.builtins.hover.printenv.with({
+                        filetypes = { "sh", "dosbatch", "ps1", "make" },
+                    })
                     -- cspell: spell checker linter and code action, I think codespell is simple and crude
                     -- nls.builtins.diagnostics.cspell.with({
                     --     disabled_filetypes = { "lua", "c", "cpp", "make" },
@@ -271,8 +291,8 @@ return {
                     })
                 end,
                 desc = "Explorer NvimTree",
-                silent = true
-            }
+                silent = true,
+            },
         },
         config = function()
             require("nvim-tree").setup({
@@ -314,6 +334,10 @@ return {
                 ignore = "^$",
             })
         end,
+    },
+    {
+        "echasnovski/mini.comment",
+        enabled = false,
     },
     -- theme
     {
