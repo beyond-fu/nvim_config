@@ -447,10 +447,18 @@ return {
         end,
     },
     -- disable Tab and S-Tab for LuaSnip
+    -- {
+    --     "L3MON4D3/LuaSnip",
+    --     keys = function()
+    --         return {}
+    --     end,
+    -- },
+    -- add my own snippets to LuaSnip
     {
-        "L3MON4D3/LuaSnip",
-        keys = function()
-            return {}
+        "rafamadriz/friendly-snippets",
+        config = function()
+            require("luasnip.loaders.from_vscode").lazy_load()
+            require("luasnip.loaders.from_lua").load({ paths = "~/nvim_config/lua/snippets/" })
         end,
     },
 }
