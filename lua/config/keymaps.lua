@@ -6,8 +6,6 @@ vim.keymap.set({ "i", "n", "v" }, "jk", "<ESC>", { noremap = true, silent = true
 vim.keymap.set("t", "jk", "<C-\\><C-N>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "j", "<Up>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "k", "<Down>", { noremap = true, silent = true })
--- vim.keymap.set({ "n", "v" }, "j", "k", { noremap = true, silent = true })
--- vim.keymap.set({ "n", "v" }, "k", "j", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-k>", "<C-w>j", { desc = "Go to lower window" })
 vim.keymap.set("n", "<C-j>", "<C-w>k", { desc = "Go to upper window" })
 vim.keymap.set("n", "<A-k>", "<cmd>m .+1<cr>==", { noremap = true, desc = "Move down", silent = true })
@@ -16,6 +14,7 @@ vim.keymap.set("i", "<A-k>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down", si
 vim.keymap.set("i", "<A-j>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up", silent = true })
 vim.keymap.set("v", "<A-k>", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
 vim.keymap.set("v", "<A-j>", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
+vim.keymap.set({ "i", "n" }, "jk", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch", noremap = false })
 vim.keymap.set("n", "<F8>", ":SymbolsOutline<CR>", { noremap = true, silent = true, desc = "Toggle outline" })
 vim.keymap.set(
     { "n" },
