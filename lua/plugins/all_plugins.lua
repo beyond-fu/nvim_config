@@ -454,11 +454,17 @@ return {
     --     end,
     -- },
     -- add my own snippets to LuaSnip
+    -- {
+    --     "rafamadriz/friendly-snippets",
+    --     config = function()
+    --         require("luasnip.loaders.from_vscode").lazy_load()
+    --         require("luasnip.loaders.from_lua").load({ paths = "~/nvim_config/lua/snippets/" })
+    --     end,
+    -- },
     {
-        "rafamadriz/friendly-snippets",
-        config = function()
-            require("luasnip.loaders.from_vscode").lazy_load()
+        "L3MON4D3/LuaSnip",
+        opts = function()
             require("luasnip.loaders.from_lua").load({ paths = "~/nvim_config/lua/snippets/" })
-        end,
+        end
     },
 }
