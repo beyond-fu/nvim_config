@@ -2,6 +2,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+vim.keymap.set({ "n", "v" }, "q", "<Nop>", { noremap = true, silent = true, desc = "map recording key(q) to <Nop>" })
 vim.keymap.set({ "i", "n", "v" }, "jk", "<ESC>", { noremap = true, silent = true })
 vim.keymap.set("t", "jk", "<C-\\><C-N>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "j", "<Up>", { noremap = true, silent = true })
