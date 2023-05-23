@@ -20,13 +20,15 @@ vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
 -- t/T of flit is same as f/F but with offset -1/1
 
 -- from nvim-tree README
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.opt.termguicolors = true
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
+-- vim.opt.termguicolors = true
 
 vim.o.winwidth = 10
 vim.o.winminwidth = 10
 vim.o.equalalways = false
+-- Add library path(just for neovim, not LSP)
+vim.opt.path = vim.opt.path + "/usr/lib/gcc/x86_64-linux-gnu/11/include/"
 
 -- vim.opt.foldmethod = "syntax" -- use this when disable ufo plugin
 vim.opt.foldcolumn = '1' -- '0' is not bad
