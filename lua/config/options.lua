@@ -30,6 +30,7 @@ vim.o.equalalways = false
 -- Add library path(just for neovim, not LSP)
 vim.opt.path = vim.opt.path + "/usr/lib/gcc/x86_64-linux-gnu/11/include/"
 
+-- code folding tool
 -- vim.opt.foldmethod = "syntax" -- use this when disable ufo plugin
 vim.opt.foldcolumn = '1' -- '0' is not bad
 vim.opt.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value

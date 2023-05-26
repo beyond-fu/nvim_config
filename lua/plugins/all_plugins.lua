@@ -1,7 +1,7 @@
 return {
     {
         "LazyVim/LazyVim",
-        opts = { colorscheme = "tokyonight-night" },
+        opts = { colorscheme = "habamax", },
     },
     -- cmdline tools and lsp servers
     {
@@ -235,7 +235,7 @@ return {
                     nls.builtins.formatting.markdownlint,
                     nls.builtins.hover.printenv.with({
                         filetypes = { "sh", "dosbatch", "ps1", "make" },
-                    })
+                    }),
                     -- cspell: spell checker linter and code action, I think codespell is simple and crude
                     -- nls.builtins.diagnostics.cspell.with({
                     --     disabled_filetypes = { "lua", "c", "cpp", "make" },
@@ -463,5 +463,24 @@ return {
                 require("luasnip.loaders.from_lua").lazy_load({ paths = "~/nvim_config/lua/snippets/" })
             end,
         },
+    },
+    -- dapui
+    {
+        "rcarriga/nvim-dap-ui",
+        config = function(_, opts)
+            local dap = require("dap")
+            local dapui = require("dapui")
+            dapui.setup(opts)
+            dap.listeners.after.event_initialized["dapui_config"] = function()
+                dapui.open({})
+            end
+            -- I do not want to close dapui when exe terminated, so comment below two function
+            -- dap.listeners.before.event_terminated["dapui_config"] = function()
+            --     dapui.close({})
+            -- end
+            -- dap.listeners.before.event_exited["dapui_config"] = function()
+            --     dapui.close({})
+            -- end
+        end,
     },
 }

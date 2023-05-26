@@ -49,3 +49,5 @@ require("lazy").setup({
         },
     },
 })
+-- set MatchParen highlight group(for matched brackets)
+vim.api.nvim_set_hl(0, 'MatchParen', { bold = true, fg = "#ff9e64" })

@@ -57,10 +57,11 @@ vim.keymap.set("n", "zO", "zO", { noremap = true, desc = "Open all folds  (curso
 vim.keymap.set("n", "zr", "zr", { noremap = true, desc = "Fold less       (global)" })
 vim.keymap.set("n", "zR", "zR", { noremap = true, desc = "Open all folds  (global)" })
 
--- Tabnine
-vim.keymap.set("n", "<leader>ts", "<cmd>TabnineStatus<CR>", { desc = "Tabnine status" })
-vim.keymap.set("n", "<leader>td", "<cmd>TabnineDisable<CR>", { desc = "Tabnine disable" })
-vim.keymap.set("n", "<leader>th", "<cmd>TabnineHub<CR>", { desc = "Tabnine hub" })
+-- Tabnine(not official Tabnine plugin, rather than cmp-tabnine)
+vim.keymap.set("n", "<leader>th", "<cmd>CmpTabnineHub", { desc = "Tabnine Hub" })
+-- vim.keymap.set("n", "<leader>ts", "<cmd>TabnineStatus<CR>", { desc = "Tabnine status" })
+-- vim.keymap.set("n", "<leader>td", "<cmd>TabnineDisable<CR>", { desc = "Tabnine disable" })
+-- vim.keymap.set("n", "<leader>th", "<cmd>TabnineHub<CR>", { desc = "Tabnine hub" })
 
 -- Copilot keymaps
 vim.keymap.set("n", "<leader>Cp", "<cmd>Copilot panel<CR>", { desc = "Copilot panel", silent = true })
