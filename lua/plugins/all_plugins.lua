@@ -188,6 +188,9 @@ return {
     {
         "akinsho/toggleterm.nvim",
         version = "*",
+        keys = {
+            { "<C-\\>", "<Cmd>execute v:count . 'ToggleTerm '<CR>", mode = { "i", "n" } },
+        },
         config = true,
         opts = {
             size = 20,
@@ -263,7 +266,7 @@ return {
         end,
     },
     {
-        -- don't use neo-tree
+        -- current file explore: neo-tree
         "nvim-neo-tree/neo-tree.nvim",
         -- enabled = false,
         opts = {
@@ -272,7 +275,7 @@ return {
             },
         },
     },
-    -- current file explore: nvim-tree
+    -- disable nvim-tree
     {
         "nvim-tree/nvim-tree.lua",
         enabled = false,

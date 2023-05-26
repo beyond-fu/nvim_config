@@ -40,3 +40,4 @@ vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 -- Copilot
 -- vim.g.copilot_proxy = "localhost:7890"
+vim.g.copilot_no_tab_map = true

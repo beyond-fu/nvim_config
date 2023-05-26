@@ -69,6 +69,8 @@ vim.keymap.set("n", "<leader>Cv", "<cmd>Copilot version<CR>", { desc = "Copilot 
 vim.keymap.set("n", "<leader>Cs", "<cmd>Copilot status<CR>", { desc = "Copilot status", silent = true })
 vim.keymap.set("n", "<leader>Cr", "<cmd>Copilot restart<CR>", { desc = "Copilot restart", silent = true })
 vim.keymap.set("n", "<leader>Cd", "<cmd>Copilot disable<CR>", { desc = "Copilot disable", silent = true })
+vim.keymap.set("i", "<C-j>", "copilot#Accept('<CR>')",
+    { expr = true, desc = "Accept copilot suggestions", noremap = true, silent = true, replace_keycodes = false })
 
 -- nvim-dap
 vim.keymap.set("n", "<leader>dd", function() require("dap").clear_breakpoints() end, { desc = "delete all breakpoints" })
