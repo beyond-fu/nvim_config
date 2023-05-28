@@ -15,8 +15,6 @@ vim.opt.timeoutlen = 80
 -- for markdown-preview
 vim.g.mkdp_theme = "light"
 vim.o.scrolloff = 10
--- Greying out the search area(Leap)
-vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
 -- t/T of flit is same as f/F but with offset -1/1
 
 -- from nvim-tree README
