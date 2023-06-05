@@ -31,6 +31,11 @@ return {
             setup = {
                 clangd = function(_, opts)
                     opts.capabilities.offsetEncoding = { "utf-16" }
+                    opts.cmd = {
+                        "clangd",
+                        "--header-insertion=never",
+                        "--clang-tidy",
+                    }
                 end,
             },
             servers = {
@@ -437,6 +442,10 @@ return {
                 DOUBT = {
                     icon = "",
                     color = "#3498DB",
+                },
+                FIXDONE = {
+                    icon = "",
+                    color = "#3CE416",
                 },
             },
         },

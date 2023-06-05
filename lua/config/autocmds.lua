@@ -5,6 +5,10 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufRead" }, {
     pattern = { "*.jpeg", "*.jpg", "*.png", "*.bmp", "*.webp", "*.tiff", "*.tif", "*.gif", },
     command = "set filetype=pic",
 })
+vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufRead" }, {
+    pattern = { "README" },
+    command = "set filetype=markdown",
+})
 
 -- must open below when not use nvim-ufo
 -- vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufRead" }, {
