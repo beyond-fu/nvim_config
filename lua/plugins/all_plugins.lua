@@ -476,4 +476,16 @@ return {
             end,
         },
     },
+    -- Trouble keymap
+    {
+        "folke/trouble.nvim",
+
+        opts = {
+            use_diagnostic_signs = true,
+            action_keys = {
+                previous = "j",
+                next = "k",
+            }
+        }
+    },
 }
