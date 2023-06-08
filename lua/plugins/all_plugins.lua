@@ -447,6 +447,10 @@ return {
                     icon = "",
                     color = "#3CE416",
                 },
+                FEATURE = {
+                    icon = "",
+                    color = "#12F2B0",
+                },
             },
         },
     },
