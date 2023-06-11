@@ -17,10 +17,12 @@ vim.g.mkdp_theme = "light"
 vim.o.scrolloff = 10
 -- t/T of flit is same as f/F but with offset -1/1
 
--- from nvim-tree README
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
--- vim.opt.termguicolors = true
+-- disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+
+
 
 vim.o.winwidth = 10
 vim.o.winminwidth = 10
