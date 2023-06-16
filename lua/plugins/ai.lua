@@ -28,7 +28,25 @@ return {
         ---@param opts cmp.ConfigSchema
         opts = function(_, opts)
             local cmp = require("cmp")
+            -- Make the priority of Luasnip higher than LSP
+            local luasnip = "luasnip"
+            local lsp = "nvim_lsp"
+            local index1, index2
+            for i, item in ipairs(opts.sources) do
+                if item.name == luasnip then
+                    index1 = i
+                end
+                if item.name == lsp then
+                    index2 = i
+                end
+            end
+            if index1 and index2 then
+                local temp = opts.sources[index1]
+                opts.sources[index1] = opts.sources[index2]
+                opts.sources[index2] = temp
+            end
 
+            -- Insert cmp_tabnine element
             table.insert(opts.sources, 1, { name = "cmp_tabnine", group_index = 2 })
 
             local confirm = opts.mapping["<CR>"]
