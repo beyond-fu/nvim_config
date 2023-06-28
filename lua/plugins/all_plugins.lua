@@ -278,6 +278,26 @@ return {
             window = {
                 width = 30,
             },
+            filesystem = {
+                window = {
+                    mappings = {
+                        ["i"] = "show_fs_stat",
+                    },
+                },
+                commands = {
+                    show_fs_stat = function(state)
+                        local utils = require("utils.utils")
+                        local node = state.tree:get_node()
+                        local stat = vim.loop.fs_stat(node.path)
+                        local str = ""
+                        str = str .. string.format("Type: %s\n", stat.type)
+                        str = str .. string.format("Size: %s\n", utils.format_size(stat.size))
+                        str = str .. string.format("Time: %s\n", utils.format_time(stat.mtime.sec))
+                        str = str .. string.format("Mode: %s\n", utils.format_mode(stat.mode, stat.type))
+                        vim.notify(str)
+                    end,
+                },
+            }
         },
     },
     -- disable nvim-tree
