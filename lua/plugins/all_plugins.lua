@@ -138,7 +138,7 @@ return {
         opts = {
             defaults = {
                 ["<leader>u"] = { name = "+ui/undo-tree" },
-                ["<leader>p"] = { name = "ChatGPT" },
+                ["<leader>P"] = { name = "ChatGPT" },
                 ["<leader>t"] = { name = "Tabnine" },
                 ["<leader>C"] = { name = "Copilot" },
             },

@@ -85,8 +85,8 @@ return {
     {
         "jackMort/ChatGPT.nvim",
         keys = {
-            { "<leader>pe", "<cmd>ChatGPTEditWithInstructions<CR>", desc = "Edit with instructions" },
-            { "<leader>pc", "<cmd>ChatGPT<CR>",                     desc = "Chat" },
+            { "<leader>Pe", "<cmd>chatgpteditwithinstructions<cr>", desc = "edit with instructions" },
+            { "<leader>Pc", "<cmd>ChatGPT<CR>",                     desc = "Chat" },
         },
         dependencies = {
             "MunifTanjim/nui.nvim",

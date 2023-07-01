@@ -22,8 +22,6 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
-
-
 vim.o.winwidth = 10
 vim.o.winminwidth = 10
 vim.o.equalalways = false
@@ -39,5 +37,5 @@ vim.opt.foldenable = true
 vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 -- Copilot
--- vim.g.copilot_proxy = "localhost:7890"
+vim.g.copilot_proxy = "localhost:7890"
 vim.g.copilot_no_tab_map = true
