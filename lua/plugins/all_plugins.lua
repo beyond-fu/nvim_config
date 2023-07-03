@@ -512,4 +512,30 @@ return {
             }
         }
     },
+    -- remove t and T keymap in flash.nvim
+    -- not use flash.nvim now, a little bit tricky
+    -- {
+    --     "folke/flash.nvim",
+    --     opts = {
+    --         modes = {
+    --             char = {
+    --                 keys = { "f", "F", ";", "," },
+    --             },
+    --         },
+    --     },
+    -- },
+
+    -- translation plugin
+    -- {
+    --     "JuanZoran/Trans.nvim",
+    --     build = function() require 'Trans'.install() end,
+    --     keys = {
+    --         { 'mt', mode = { 'n', 'x' }, '<Cmd>Translate<CR>', desc = ' Translate' },
+    --         { 'mp', mode = { 'n', 'x' }, '<Cmd>TransPlay<CR>', desc = ' Auto Play' },
+    --     },
+    --     dependencies = { 'kkharji/sqlite.lua', },
+    --     opts = {
+    --         dir = "/home/fym/stardict.db",
+    --     }
+    -- },
 }
