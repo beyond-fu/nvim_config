@@ -363,6 +363,7 @@ return {
             })
         end,
     },
+    -- not use mini.commment
     {
         "echasnovski/mini.comment",
         enabled = false,
@@ -379,6 +380,7 @@ return {
             })
         end,
     },
+    -- Telescope
     {
         "nvim-telescope/telescope.nvim",
         dependencies = {
@@ -512,18 +514,61 @@ return {
             }
         }
     },
-    -- remove t and T keymap in flash.nvim
-    -- not use flash.nvim now, a little bit tricky
-    -- {
-    --     "folke/flash.nvim",
-    --     opts = {
-    --         modes = {
-    --             char = {
-    --                 keys = { "f", "F", ";", "," },
-    --             },
-    --         },
-    --     },
-    -- },
+    -- Jump plugin, remove t and T keymap in flash.nvim, not use flit and leap
+    {
+        "folke/flash.nvim",
+        keys = {
+            -- Show diagnostics at target, without changing cursor position
+            {
+                "cd",
+                mode = { "n", "x" },
+                function()
+                    require("flash").jump({
+                        matcher = function(win)
+                            ---@param diag Diagnostic
+                            return vim.tbl_map(function(diag)
+                                return {
+                                    pos = { diag.lnum + 1, diag.col },
+                                    end_pos = { diag.end_lnum + 1, diag.end_col - 1 },
+                                }
+                            end, vim.diagnostic.get(vim.api.nvim_win_get_buf(win)))
+                        end,
+                        action = function(match, state)
+                            vim.api.nvim_win_call(match.win, function()
+                                vim.api.nvim_win_set_cursor(match.win, match.pos)
+                                vim.diagnostic.open_float()
+                            end)
+                            state:restore()
+                        end,
+                    })
+                end,
+                desc = "Flash diagnostics"
+            },
+            -- Continue flash last search
+            {
+                "t",
+                mode = { "n", "x" },
+                function()
+                    require("flash").jump({
+                        continue = true
+                    })
+                end,
+                desc = "Continue Flash"
+            },
+            -- <c-s>(default key): toggles flash functionality on or off while using regular search
+        },
+        opts = {
+            modes = {
+                char = {
+                    keys = { "f", "F", ";", "," }, --delete 't' and 'T'
+                },
+                search = {
+                    -- disable flash in regular search by default, can switch by <c-s>
+                    enabled = false,
+                },
+            }
+        },
+    },
 
     -- translation plugin
     -- {

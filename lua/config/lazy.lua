@@ -17,14 +17,13 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.ui.mini-animate" },
         { import = "lazyvim.plugins.extras.dap.core" },
         { import = "lazyvim.plugins.extras.coding.yanky" },
-        -- { import = "lazyvim.plugins.extras.editor.flash" },
         -- import/override with your plugins
         { import = "plugins" },
         -- { import = "lazyvim.plugins.extras.coding.copilot" },
     },
     defaults = {
         -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
-        -- If you know what falseyou're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
+        -- If you know what falseyou're doing, you can set this to `true` to have all your custom plugins lazy-loaded by dfault.
         -- this `lazy` config option means: when true, by default lazy-leaded all your own pluggins(in config/plugins/all_plugins.lua),
         -- when false, all your own plugins will be loaded during startup(of course depending on youe config for each plugin)
         lazy = false,
