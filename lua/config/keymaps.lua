@@ -17,7 +17,8 @@ vim.keymap.set("i", "<A-j>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up", sile
 vim.keymap.set("v", "<A-k>", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
 vim.keymap.set("v", "<A-j>", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
 vim.keymap.set({ "i", "n" }, "jk", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch", noremap = false })
-vim.keymap.set("n", "<F8>", ":SymbolsOutline<CR>", { noremap = true, silent = true, desc = "Toggle outline" })
+vim.keymap.set("n", "<F8>", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true, desc = "Toggle outline" })
+vim.keymap.set("n", "dc", "cc<ESC>", { noremap = true, silent = true, desc = "Delete current line&Insert" })
 vim.keymap.set(
     { "n" },
     "<A-\\>",
