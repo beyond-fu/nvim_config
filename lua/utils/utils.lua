@@ -1,3 +1,4 @@
+-- Help checking file information for neo-tree
 M = {}
 
 local SIZE_TYPES = { "", "K", "M", "G", "T", "P", "E", "Z" }

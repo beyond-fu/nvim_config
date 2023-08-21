@@ -10,6 +10,12 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufRead" }, {
     command = "set filetype=markdown",
 })
 
+vim.api.nvim_create_autocmd({ "BufRead" }, {
+    pattern = { "*.v", "*.sv", },
+    callback = function()
+        vim.keymap.set("i", "'", "'", { buffer = 0 })
+    end
+})
 -- must open below when not use nvim-ufo
 -- vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufRead" }, {
 --     callback = function()
