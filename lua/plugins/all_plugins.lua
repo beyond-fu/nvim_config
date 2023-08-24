@@ -28,6 +28,17 @@ return {
             keys[#keys + 1] = { "K", false }
         end,
         opts = {
+            -- manage integration of LSP and neovim(upper level, because of the existence of Mason)
+            servers = {
+                pyright = {},
+                verible = {
+                    cmd = { "verible-verilog-ls" },
+                    filetypes = { "systemverilog", "verilog" },
+                    -- root_dir = require("lspconfig.util").root_pattern(".ve"),
+                    single_file_support = true,
+                },
+            },
+            -- detailed configurations of each LSP
             setup = {
                 clangd = function(_, opts)
                     opts.capabilities.offsetEncoding = { "utf-16" }
@@ -37,9 +48,6 @@ return {
                         "--clang-tidy",
                     }
                 end,
-            },
-            servers = {
-                pyright = {},
             },
         },
     },
@@ -233,8 +241,6 @@ return {
             local nls = require("null-ls")
             return {
                 sources = {
-                    nls.builtins.diagnostics.verilator,
-                    nls.builtins.formatting.verible_verilog_format,
                     nls.builtins.diagnostics.shellcheck, --static shell lint
                     nls.builtins.formatting.shfmt,       -- shell formatting
                     nls.builtins.diagnostics.checkmake,  -- Makefile lint
