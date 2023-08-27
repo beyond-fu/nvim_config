@@ -31,14 +31,40 @@ return {
             -- manage integration of LSP and neovim(upper level, because of the existence of Mason)
             servers = {
                 pyright = {},
-                verible = {
-                    cmd = { "verible-verilog-ls" },
+                -- use veridian to dot-completion, syntax lint(svls and verible), veridian cannot hover define macro
+                veridian = {
+                    cmd = { "veridian" },
                     filetypes = { "systemverilog", "verilog" },
-                    -- root_dir = require("lspconfig.util").root_pattern(".ve"),
+                    root_dir = require("lspconfig.util").root_pattern("veridian.yml", ".git"),
                     single_file_support = true,
                 },
+                -- use svlangserver to gd, formatting(verible), hover
+                svlangserver = {
+                    cmd = { "svlangserver" },
+                    filetypes = { "verilog", "systemverilog" },
+                    root_dir = require("lspconfig.util").root_pattern("veridian.yml", ".git"),
+                    settings = {
+                        systemverilog = {
+                            includeIndexing = { "*.{v,vh,sv,svh}", "**/*.{v,vh,sv,svh}" },
+                            disableLinting = true,
+                            disableCompletionProvider = true,
+                            disableHoverProvider = false,
+                            disableSignatureHelpProvider = true,
+                            -- linter = "verilator",
+                            -- cannot disable formatting for svlangserver, so do not format with veridian
+                            formatCommand = "verible-verilog-format --indentation_spaces=4",
+                        },
+                    },
+                    single_file_support = true,
+                },
+                -- verible = {
+                --     cmd = { "verible-verilog-ls" },
+                --     filetypes = { "systemverilog", "verilog" },
+                --     root_dir = require("lspconfig.util").root_pattern(".git"),
+                --     single_file_support = true,
+                -- },
             },
-            -- detailed configurations of each LSP
+            -- detailed configurations of each LSP(bottom level)
             setup = {
                 clangd = function(_, opts)
                     opts.capabilities.offsetEncoding = { "utf-16" }
@@ -47,6 +73,14 @@ return {
                         "--header-insertion=never",
                         "--clang-tidy",
                     }
+                end,
+                veridian = function()
+                    require("lazyvim.util").on_attach(function(client, _)
+                        if client.name == "veridian" then
+                            -- disable hover of veridian
+                            client.server_capabilities.hoverProvider = false
+                        end
+                    end)
                 end,
             },
         },
@@ -241,6 +275,7 @@ return {
             local nls = require("null-ls")
             return {
                 sources = {
+                    nls.builtins.formatting.yamlfmt,
                     nls.builtins.diagnostics.shellcheck, --static shell lint
                     nls.builtins.formatting.shfmt,       -- shell formatting
                     nls.builtins.diagnostics.checkmake,  -- Makefile lint

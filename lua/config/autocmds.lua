@@ -11,12 +11,18 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufRead" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufRead" }, {
-    pattern = { "*.v", "*.sv", },
+    pattern = { "*.v", "*.sv", "*.svh", "*.vh" },
     callback = function()
         vim.keymap.set("i", "'", "'", { buffer = 0 })
         vim.keymap.set("i", "`", "`", { buffer = 0 })
     end
 })
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufRead" }, {
+    pattern = { "*.vh", "*.svh" },
+    command = "set filetype=systemverilog",
+})
+
 -- must open below when not use nvim-ufo
 -- vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufRead" }, {
 --     callback = function()
