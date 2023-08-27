@@ -39,6 +39,8 @@ return {
                     single_file_support = true,
                 },
                 -- use svlangserver to gd, formatting(verible), hover
+                -- svlangserver hover has a bug, `define macro hover` will not work after saving current file.
+                -- Must save the `define macro file` again to make `define macro hover` work again.
                 svlangserver = {
                     cmd = { "svlangserver" },
                     filetypes = { "verilog", "systemverilog" },
@@ -386,14 +388,29 @@ return {
     -- set notify background color
     {
         "rcarriga/nvim-notify",
-        config = function()
-            require("notify").setup({
-                -- background_colour = "#000000",
-            })
-        end,
+        -- used for opacity
+        -- config = function()
+        --     require("notify").setup({
+        --         -- background_colour = "#000000",
+        --     })
+        -- end,
         opts = {
             timeout = 3000,
+            stages = "static",
         },
+    },
+    -- noice filter out "No information available"
+    {
+        "folke/noice.nvim",
+        opts = function(_, opts)
+            table.insert(opts.routes, {
+                filter = {
+                    event = "notify",
+                    find = "No information available",
+                },
+                opts = { skip = true },
+            })
+        end
     },
     -- current comment tool
     {
