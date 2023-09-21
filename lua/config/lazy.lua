@@ -53,5 +53,7 @@ require("lazy").setup({
 })
 -- set MatchParen highlight group(for matched brackets)
 vim.api.nvim_set_hl(0, 'MatchParen', { bold = true, fg = "#ff9e64" })
+vim.api.nvim_set_hl(0, 'Comment', { italic = true, ctermfg = 243, fg = "#767676" })
+vim.api.nvim_set_hl(0, 'Keyword', { italic = true, ctermfg = 139, fg = "#af87af" })
 -- Greying out the search area(Leap)
-vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
+-- vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })

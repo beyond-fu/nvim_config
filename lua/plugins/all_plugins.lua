@@ -54,7 +54,8 @@ return {
                             disableSignatureHelpProvider = true,
                             -- linter = "verilator",
                             -- cannot disable formatting for svlangserver, so do not format with veridian
-                            formatCommand = "verible-verilog-format --indentation_spaces=4",
+                            formatCommand =
+                            "verible-verilog-format --indentation_spaces=4",
                         },
                     },
                     single_file_support = true,
@@ -518,6 +519,11 @@ return {
     {
         "folke/todo-comments.nvim",
         opts = {
+            highlight = {
+                multiline = true,
+                multiline_pattern = "^.",
+                comments_only = true,
+            },
             keywords = {
                 DOUBT = {
                     icon = "",
