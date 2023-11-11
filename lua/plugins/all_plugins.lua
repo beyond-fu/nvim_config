@@ -1,7 +1,7 @@
 return {
     {
         "LazyVim/LazyVim",
-        opts = { colorscheme = "habamax", },
+        opts = { colorscheme = "habamax" },
     },
     -- cmdline tools and lsp servers
     {
@@ -54,8 +54,7 @@ return {
                             disableSignatureHelpProvider = true,
                             -- linter = "verilator",
                             -- cannot disable formatting for svlangserver, so do not format with veridian
-                            formatCommand =
-                            "verible-verilog-format --indentation_spaces=4",
+                            formatCommand = "verible-verilog-format --indentation_spaces=4",
                         },
                     },
                     single_file_support = true,
@@ -288,6 +287,7 @@ return {
                     nls.builtins.hover.printenv.with({
                         filetypes = { "sh", "dosbatch", "ps1", "make" },
                     }),
+                    nls.builtins.formatting.asmfmt,
                     -- cspell: spell checker linter and code action, I think codespell is simple and crude
                     -- nls.builtins.diagnostics.cspell.with({
                     --     disabled_filetypes = { "lua", "c", "cpp", "make" },
@@ -341,7 +341,7 @@ return {
                         vim.notify(str)
                     end,
                 },
-            }
+            },
         },
     },
     -- disable nvim-tree
@@ -396,7 +396,7 @@ return {
         --     })
         -- end,
         opts = {
-            timeout = 3000,
+            timeout = 4000,
             stages = "static",
         },
     },
@@ -411,7 +411,7 @@ return {
                 },
                 opts = { skip = true },
             })
-        end
+        end,
     },
     -- current comment tool
     {
@@ -431,11 +431,27 @@ return {
     {
         "catppuccin/nvim",
         name = "catppuccin",
+        enabled = false,
         lazy = true,
         config = function()
             require("catppuccin").setup({
                 flavour = "macchiato",
                 -- transparent_background = true,
+            })
+        end,
+    },
+    -- current theme
+    {
+        "echasnovski/mini.hues",
+        version = false,
+        config = function()
+            require("mini.hues").setup({
+                background = "#0E1F25",
+                foreground = "#c0c8cc",
+                n_hues = 8,
+                satuation = "medium",
+                accent = "fg",
+                plugin = { default = true },
             })
         end,
     },
@@ -537,6 +553,14 @@ return {
                     icon = "",
                     color = "#12F2B0",
                 },
+                DONE = {
+                    icon = "󰸡",
+                    color = "#A2ED43",
+                },
+                TODO = {
+                    icon = "",
+                    color = "info"
+                },
             },
         },
     },
@@ -575,8 +599,8 @@ return {
             action_keys = {
                 previous = "j",
                 next = "k",
-            }
-        }
+            },
+        },
     },
     -- Jump plugin, remove t and T keymap in flash.nvim, not use flit and leap
     {
@@ -606,7 +630,7 @@ return {
                         end,
                     })
                 end,
-                desc = "Flash diagnostics"
+                desc = "Flash diagnostics",
             },
             -- Continue flash last search
             {
@@ -614,10 +638,10 @@ return {
                 mode = { "n", "x" },
                 function()
                     require("flash").jump({
-                        continue = true
+                        continue = true,
                     })
                 end,
-                desc = "Continue Flash"
+                desc = "Continue Flash",
             },
             -- <c-s>(default key): toggles flash functionality on or off while using regular search
         },
@@ -630,7 +654,7 @@ return {
                     -- disable flash in regular search by default, can switch by <c-s>
                     enabled = false,
                 },
-            }
+            },
         },
     },
 

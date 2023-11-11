@@ -19,9 +19,7 @@ vim.keymap.set("v", "<A-j>", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = tr
 vim.keymap.set({ "i", "n" }, "jk", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch", noremap = false })
 vim.keymap.set("n", "<F8>", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true, desc = "Toggle outline" })
 vim.keymap.set("n", "dc", "cc<ESC>", { noremap = true, silent = true, desc = "Delete current line&Insert" })
-vim.keymap.set(
-    { "n" },
-    "<A-\\>",
+vim.keymap.set({ "n" }, "<A-\\>",
     "<cmd>2ToggleTerm direction=vertical size=50<CR>",
     { noremap = true, silent = true, desc = "Open terminal vertical" }
 )
@@ -32,6 +30,7 @@ end, { noremap = false, desc = "Window Max" })
 -- vim.keymap.set("n", "<C-w>_", "<cmd>WindowsMaximizeVertically<CR>", { noremap = true, desc = "Window Max Vertical" })
 -- vim.keymap.set("n", "<C-w>|", "<cmd>WindowsMaximizeHorizontally<CR>", { noremap = true, desc = "Window Max Horizontal" })
 -- vim.keymap.set("n", "<C-w>=", "<cmd>WindowsEqualize<CR>", { noremap = true, desc = "Window Max Equal" })
+vim.keymap.set({ "n", "x" }, "gw", "*N", { desc = "Highlight under cursor" })
 
 -- fold
 vim.keymap.set("n", "zm", "zm", { noremap = true, desc = "Fold more       (global)" })
