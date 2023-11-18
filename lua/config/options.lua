@@ -3,13 +3,13 @@
 -- Add any additional options here
 
 -- Tab
-vim.opt.tabstop = 4      -- number of visual spaces per TAB
-vim.opt.softtabstop = 4  -- number of spacesin tab when editing
-vim.opt.shiftwidth = 4   -- insert 4 spaces on a tab
+vim.opt.tabstop = 4 -- number of visual spaces per TAB
+vim.opt.softtabstop = 4 -- number of spacesin tab when editing
+vim.opt.shiftwidth = 4 -- insert 4 spaces on a tab
 vim.opt.expandtab = true -- tabs are spaces, mainly because of python
 
 -- UI configs
-vim.opt.number = true         -- show absolute number
+vim.opt.number = true -- show absolute number
 vim.opt.relativenumber = true -- add numbers to each line on the left side
 vim.opt.timeoutlen = 80
 -- for markdown-preview
@@ -30,8 +30,8 @@ vim.opt.path = vim.opt.path + "/usr/lib/gcc/x86_64-linux-gnu/11/include/"
 
 -- code folding tool
 -- vim.opt.foldmethod = "syntax" -- use this when disable ufo plugin
-vim.opt.foldcolumn = '1' -- '0' is not bad
-vim.opt.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+vim.opt.foldcolumn = "1" -- '0' is not bad
+vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
