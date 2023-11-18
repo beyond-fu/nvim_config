@@ -453,6 +453,7 @@ return {
         accent = "fg",
         plugin = { default = true },
       })
+      vim.g.terminal_color_8 = "#767676"
     end,
   },
   -- Telescope
