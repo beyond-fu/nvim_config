@@ -389,6 +389,7 @@ return {
   -- set notify background color
   {
     "rcarriga/nvim-notify",
+    enabled = false,
     -- used for opacity
     -- config = function()
     --     require("notify").setup({
