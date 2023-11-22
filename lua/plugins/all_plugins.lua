@@ -3,16 +3,10 @@ return {
     "LazyVim/LazyVim",
     opts = { colorscheme = "habamax" },
   },
-  -- {
-  --   "abeldekat/lazyflex.nvim",
-  --   import = "lazyflex.hook",
-  --   version = "*",
-  --   opts = { lazyvim = { presets = { "lsp", "treesitter" }, kw = { "your_colorscheme" } } },
-  -- },
-  -- {
-  --   "stevearc/conform.nvim",
-  -- enabled = false,
-  -- },
+  {
+    "stevearc/conform.nvim",
+    -- enabled = false,
+  },
   -- cmdline tools and lsp servers
   {
     "williamboman/mason.nvim",

@@ -10,6 +10,14 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
+
+    -- `lazyflex` helps to test and troubleshoot plugins
+    --    {
+    --      "abeldekat/lazyflex.nvim",
+    --      import = "lazyflex.hook",
+    --      version = "*",
+    --      opts = { lazyvim = { presets = { "lsp", "treesitter" }, kw = { "your_colorscheme" } } },
+    --    },
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
     -- { import = "lazyvim.plugins.extras.lang.typescript" },
