@@ -3,10 +3,9 @@ return {
     "LazyVim/LazyVim",
     opts = { colorscheme = "habamax" },
   },
-  {
-    "stevearc/conform.nvim",
-    -- enabled = false,
-  },
+  -- {
+  --   "stevearc/conform.nvim",
+  -- },
   -- cmdline tools and lsp servers
   {
     "williamboman/mason.nvim",
@@ -57,18 +56,20 @@ return {
               disableHoverProvider = false,
               disableSignatureHelpProvider = true,
               -- linter = "verilator",
-              -- cannot disable formatting for svlangserver, so do not format with veridian
-              formatCommand = "verible-verilog-format --indentation_spaces=4",
+              -- use `veridian` to format, disable `svlangserver` formatting by setting formatCommand to null
+              -- formatCommand = "verible-verilog-format --indentation_spaces=4",
+              formatCommand = "",
             },
           },
           single_file_support = true,
         },
-        -- verible = {
-        --     cmd = { "verible-verilog-ls" },
-        --     filetypes = { "systemverilog", "verilog" },
-        --     root_dir = require("lspconfig.util").root_pattern(".git"),
-        --     single_file_support = true,
-        -- },
+        -- verible LSP not mature yet
+        --[[ verible = {
+          cmd = { "verible-verilog-ls" },
+          filetypes = { "systemverilog", "verilog" },
+          root_dir = require("lspconfig.util").root_pattern(".git"),
+          single_file_support = true,
+        }, ]]
       },
       -- detailed configurations of each LSP(bottom level)
       setup = {
@@ -282,7 +283,7 @@ return {
       opts.root_dir = opts.root_dir
         or require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git")
       opts.sources = vim.list_extend(opts.sources or {}, {
-        nls.builtins.formatting.yamlfmt,
+        -- nls.builtins.formatting.yamlfmt,
         nls.builtins.diagnostics.shellcheck, --static shell lint
         nls.builtins.formatting.shfmt, -- shell formatting
         nls.builtins.diagnostics.checkmake, -- Makefile lint

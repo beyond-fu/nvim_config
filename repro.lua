@@ -24,23 +24,25 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufRead" }, {
 local plugins = {
   -- optional: reduce the number of plugins needed to reproduce the problem
   { "abeldekat/lazyflex.nvim", version = "*", import = "lazyflex.hook", opts = {} },
-
   { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+  -- {
+  --   "mason.nvim",
+  --   opts = { ensure_installed = { "verible" } },
+  -- },
   {
     "neovim/nvim-lspconfig",
     opts = {
       -- manage integration of LSP and neovim(upper level, because of the existence of Mason)
       servers = {
-        -- use veridian to dot-completion, syntax lint(slang and verible), veridian cannot hover define macro
-        veridian = {
-          cmd = { "veridian" },
-          filetypes = { "systemverilog", "verilog" },
-          -- root_dir = require("lspconfig.util").root_pattern("veridian.yml", ".git"),
-          single_file_support = true,
-        },
         -- use svlangserver to gd, formatting(verible), hover
         -- svlangserver hover has a bug, `define macro hover` will not work after saving current file.
         -- Must save the `define macro file` again to make `define macro hover` work again.
+        -- veridian = {
+        --   cmd = { "veridian" },
+        --   filetypes = { "systemverilog", "verilog" },
+        --   -- root_dir = require("lspconfig.util").root_pattern("veridian.yml", ".git"),
+        --   single_file_support = true,
+        -- },
         svlangserver = {
           cmd = { "svlangserver" },
           filetypes = { "verilog", "systemverilog" },
@@ -59,16 +61,26 @@ local plugins = {
           },
           single_file_support = true,
         },
-        setup = {
-          veridian = function()
-            require("lazyvim.util").lsp.on_attach(function(client, _)
-              if client.name == "veridian" then
-                -- disable hover of veridian
-                client.server_capabilities.hoverProvider = false
-              end
-            end)
-          end,
-        },
+        -- verible = {
+        --   cmd = { "verible-verilog-ls" },
+        --   filetypes = { "systemverilog", "verilog" },
+        --   -- root_dir = require("lspconfig.util").root_pattern(".git"),
+        --   single_file_support = true,
+        -- },
+      },
+      -- setup = {
+      --   veridian = function()
+      --     require("lazyvim.util").lsp.on_attach(function(client, _)
+      --       if client.name == "veridian" then
+      --         -- disable hover of veridian
+      --         client.server_capabilities.hoverProvider = false
+      --       end
+      --     end)
+      --   end,
+      -- },
+      {
+        "conform.nvim",
+        cond = true,
       },
     },
   },

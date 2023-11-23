@@ -12,16 +12,17 @@ require("lazy").setup({
     -- add LazyVim and import its plugins
 
     -- `lazyflex` helps to test and troubleshoot plugins
-    --    {
-    --      "abeldekat/lazyflex.nvim",
-    --      import = "lazyflex.hook",
-    --      version = "*",
-    --      opts = { lazyvim = { presets = { "lsp", "treesitter" }, kw = { "your_colorscheme" } } },
-    --    },
+    --     {
+    --       "abeldekat/lazyflex.nvim",
+    --       import = "lazyflex.hook",
+    --       version = "*",
+    --       opts = { lazyvim = { presets = { "lsp", "treesitter", "formatting" }, kw = { "your_colorscheme" } } },
+    --     },
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
     -- { import = "lazyvim.plugins.extras.lang.typescript" },
     -- { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.lang.yaml" },
     { import = "lazyvim.plugins.extras.ui.mini-animate" },
     { import = "lazyvim.plugins.extras.dap.core" },
     { import = "lazyvim.plugins.extras.coding.yanky" },
