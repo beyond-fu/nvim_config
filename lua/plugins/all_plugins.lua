@@ -95,24 +95,25 @@ return {
   -- nvim-ufo, code fold tool
   {
     "kevinhwang91/nvim-ufo",
+    pin = true,
     dependencies = {
       "kevinhwang91/promise-async",
-      {
-        "luukvbaal/statuscol.nvim",
-        config = function()
-          local builtin = require("statuscol.builtin")
-          require("statuscol").setup({
-            relculright = true,
-            segments = {
-              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-              { text = { "%s" }, click = "v:lua.ScSa" },
-              { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-            },
-          })
-        end,
-      },
+      -- {
+      --   "luukvbaal/statuscol.nvim",
+      --   config = function()
+      --     local builtin = require("statuscol.builtin")
+      --     require("statuscol").setup({
+      --       relculright = true,
+      --       segments = {
+      --         { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+      --         { text = { "%s" }, click = "v:lua.ScSa" },
+      --         { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+      --       },
+      --     })
+      --   end,
+      -- },
     },
-    event = { "BufRead" },
+    event = { "BufReadPost" },
     config = function()
       vim.g.loaded_ufo = 1
       local ftMap = {
@@ -122,7 +123,7 @@ return {
       }
       local handler = function(virtText, lnum, endLnum, width, truncate)
         local newVirtText = {}
-        local suffix = ("  %d "):format(endLnum - lnum)
+        local suffix = (" 󰁂 %d "):format(endLnum - lnum)
         local sufWidth = vim.fn.strdisplaywidth(suffix)
         local targetWidth = width - sufWidth
         local curWidth = 0
@@ -600,7 +601,6 @@ return {
   -- Trouble keymap
   {
     "folke/trouble.nvim",
-
     opts = {
       use_diagnostic_signs = true,
       action_keys = {

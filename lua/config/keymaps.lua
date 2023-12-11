@@ -18,14 +18,16 @@ vim.keymap.set("v", "<A-k>", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = 
 vim.keymap.set("v", "<A-j>", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
 vim.keymap.set({ "i", "n" }, "jk", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch", noremap = false })
 vim.keymap.set("n", "<F8>", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true, desc = "Toggle outline" })
-vim.keymap.set("n", "dc", "cc<ESC>", { noremap = true, silent = true, desc = "Delete current line&Insert" })
-vim.keymap.set({ "n" }, "<A-\\>",
-    "<cmd>2ToggleTerm direction=vertical size=50<CR>",
-    { noremap = true, silent = true, desc = "Open terminal vertical" }
+vim.keymap.set("n", "dc", "cc<ESC>", { noremap = true, silent = true, desc = "Delete current line & ESC" })
+vim.keymap.set(
+  { "n" },
+  "<A-\\>",
+  "<cmd>2ToggleTerm direction=vertical size=50<CR>",
+  { noremap = true, silent = true, desc = "Open terminal vertical" }
 )
 vim.keymap.set("n", "<C-w>m", function()
-    vim.cmd([[wincmd |]])
-    vim.cmd([[wincmd _]])
+  vim.cmd([[wincmd |]])
+  vim.cmd([[wincmd _]])
 end, { noremap = false, desc = "Window Max" })
 -- vim.keymap.set("n", "<C-w>_", "<cmd>WindowsMaximizeVertically<CR>", { noremap = true, desc = "Window Max Vertical" })
 -- vim.keymap.set("n", "<C-w>|", "<cmd>WindowsMaximizeHorizontally<CR>", { noremap = true, desc = "Window Max Horizontal" })
@@ -39,18 +41,20 @@ vim.keymap.set("n", "zc", "zc", { noremap = true, desc = "Close fold       (curs
 vim.keymap.set("n", "zC", "zC", { noremap = true, desc = "Close all folds  (cursor)" })
 -- fold preview
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
-    callback = function()
-        if vim.fn.exists("loaded_ufo") then
-            vim.keymap.set('n', 'K', function()
-                local winid = require('ufo').peekFoldedLinesUnderCursor()
-                if not winid then
-                    vim.lsp.buf.hover()
-                end
-            end, { desc = "Hover with UFO" })
-        else
-            vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover" })
+  callback = function()
+    if vim.fn.exists("loaded_ufo") then
+      vim.keymap.set("n", "K", function()
+        local winid = require("ufo").peekFoldedLinesUnderCursor()
+        if not winid then
+          vim.lsp.buf.hover()
         end
+      end, { desc = "Hover with UFO" })
+    else
+      vim.keymap.set("n", "K", function()
+        vim.lsp.buf.hover()
+      end, { desc = "Hover" })
     end
+  end,
 })
 -- unfold
 vim.keymap.set("n", "zo", "zo", { noremap = true, desc = "Open fold       (cursor)" })
@@ -70,8 +74,14 @@ vim.keymap.set("n", "<leader>Cv", "<cmd>Copilot version<CR>", { desc = "Copilot 
 vim.keymap.set("n", "<leader>Cs", "<cmd>Copilot status<CR>", { desc = "Copilot status", silent = true })
 vim.keymap.set("n", "<leader>Cr", "<cmd>Copilot restart<CR>", { desc = "Copilot restart", silent = true })
 vim.keymap.set("n", "<leader>Cd", "<cmd>Copilot disable<CR>", { desc = "Copilot disable", silent = true })
-vim.keymap.set("i", "<C-j>", "copilot#Accept('<CR>')",
-    { expr = true, desc = "Accept copilot suggestions", noremap = true, silent = true, replace_keycodes = false })
+vim.keymap.set(
+  "i",
+  "<C-j>",
+  "copilot#Accept('<CR>')",
+  { expr = true, desc = "Accept copilot suggestions", noremap = true, silent = true, replace_keycodes = false }
+)
 
 -- nvim-dap
-vim.keymap.set("n", "<leader>dd", function() require("dap").clear_breakpoints() end, { desc = "delete all breakpoints" })
+vim.keymap.set("n", "<leader>dd", function()
+  require("dap").clear_breakpoints()
+end, { desc = "delete all breakpoints" })
