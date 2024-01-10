@@ -12,6 +12,7 @@ vim.opt.expandtab = true -- tabs are spaces, mainly because of python
 vim.opt.number = true -- show absolute number
 vim.opt.relativenumber = true -- add numbers to each line on the left side
 vim.opt.timeoutlen = 80
+
 -- for markdown-preview
 vim.g.mkdp_theme = "light"
 vim.o.scrolloff = 10
@@ -39,3 +40,5 @@ vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 -- Copilot
 vim.g.copilot_proxy = "localhost:7890"
 vim.g.copilot_no_tab_map = true
+
+vim.g.netrw_browsex_viewer = "google-chrome"

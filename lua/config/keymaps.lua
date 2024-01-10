@@ -17,7 +17,7 @@ vim.keymap.set("i", "<A-j>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up", sile
 vim.keymap.set("v", "<A-k>", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
 vim.keymap.set("v", "<A-j>", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
 vim.keymap.set({ "i", "n" }, "jk", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch", noremap = false })
-vim.keymap.set("n", "<F8>", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true, desc = "Toggle outline" })
+-- vim.keymap.set("n", "<F8>", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true, desc = "Toggle outline" })
 vim.keymap.set("n", "dc", "cc<ESC>", { noremap = true, silent = true, desc = "Delete current line & ESC" })
 vim.keymap.set(
   { "n" },
@@ -32,7 +32,10 @@ end, { noremap = false, desc = "Window Max" })
 -- vim.keymap.set("n", "<C-w>_", "<cmd>WindowsMaximizeVertically<CR>", { noremap = true, desc = "Window Max Vertical" })
 -- vim.keymap.set("n", "<C-w>|", "<cmd>WindowsMaximizeHorizontally<CR>", { noremap = true, desc = "Window Max Horizontal" })
 -- vim.keymap.set("n", "<C-w>=", "<cmd>WindowsEqualize<CR>", { noremap = true, desc = "Window Max Equal" })
-vim.keymap.set({ "n", "x" }, "gw", "*N", { desc = "Highlight under cursor" })
+vim.keymap.set({ "n", "x" }, "gw", "*N", { desc = "Highlight under cursor(ignore case)" })
+-- vim.keymap.set({ "n", "x" }, "gW", function()
+--   return vim.fn.search(vim.fn.expand("<cword>"))
+-- end, { desc = "Highlight under cursor(with case)" })
 
 -- fold
 vim.keymap.set("n", "zm", "zm", { noremap = true, desc = "Fold more       (global)" })
@@ -63,7 +66,7 @@ vim.keymap.set("n", "zr", "zr", { noremap = true, desc = "Fold less       (globa
 vim.keymap.set("n", "zR", "zR", { noremap = true, desc = "Open all folds  (global)" })
 
 -- Tabnine(not official Tabnine plugin, rather than cmp-tabnine)
-vim.keymap.set("n", "<leader>th", "<cmd>CmpTabnineHub", { desc = "Tabnine Hub" })
+vim.keymap.set("n", "<leader>th", "<cmd>CmpTabnineHub<CR>", { desc = "Tabnine Hub" })
 -- vim.keymap.set("n", "<leader>ts", "<cmd>TabnineStatus<CR>", { desc = "Tabnine status" })
 -- vim.keymap.set("n", "<leader>td", "<cmd>TabnineDisable<CR>", { desc = "Tabnine disable" })
 -- vim.keymap.set("n", "<leader>th", "<cmd>TabnineHub<CR>", { desc = "Tabnine hub" })
@@ -85,3 +88,6 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>dd", function()
   require("dap").clear_breakpoints()
 end, { desc = "delete all breakpoints" })
+
+-- open .zshrc
+vim.keymap.set("n", "gz", "<cmd>e ~/.zshrc<CR>", { noremap = true, desc = "Open .zshrc", silent = true })

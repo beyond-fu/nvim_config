@@ -1,4 +1,92 @@
 return {
+  -- cmdline tools and lsp servers
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "clangd",
+        "cpptools",
+        "cspell",
+        "json-lsp",
+        "lua-language-server",
+        "markdownlint",
+        "shellcheck",
+        "pyright",
+        "autopep8",
+        "shfmt",
+      },
+    },
+  },
+  -- nvim-lspconfig
+  {
+    "neovim/nvim-lspconfig",
+    init = function()
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      keys[#keys + 1] = { "K", false }
+    end,
+    opts = {
+      -- manage integration of LSP and neovim(upper level, because of the existence of Mason)
+      servers = {
+        pyright = {},
+        -- use veridian to dot-completion, syntax lint(slang and verible), formatting(verible), veridian cannot hover define macro
+        veridian = {
+          cmd = { "veridian" },
+          filetypes = { "systemverilog", "verilog" },
+          root_dir = require("lspconfig.util").root_pattern("veridian.yml", ".git"),
+          single_file_support = true,
+        },
+        -- use svlangserver to gd, hover
+        -- svlangserver hover has a bug, `define macro hover` will not work after saving current file.
+        -- Must save the `define macro file` again to make `define macro hover` work again.
+        svlangserver = {
+          cmd = { "svlangserver" },
+          filetypes = { "verilog", "systemverilog" },
+          root_dir = require("lspconfig.util").root_pattern("veridian.yml", ".git"),
+          settings = {
+            systemverilog = {
+              includeIndexing = { "*.{v,vh,sv,svh}", "**/*.{v,vh,sv,svh}" },
+              disableLinting = true,
+              disableCompletionProvider = true,
+              disableHoverProvider = false,
+              disableSignatureHelpProvider = true,
+              -- linter = "verilator",
+              -- use `veridian` to format, disable `svlangserver` formatting by setting formatCommand to null
+              -- formatCommand = "verible-verilog-format --indentation_spaces=4",
+              formatCommand = "",
+            },
+          },
+          single_file_support = true,
+        },
+        -- verible LSP not mature yet
+        --[[ verible = {
+          cmd = { "verible-verilog-ls" },
+          filetypes = { "systemverilog", "verilog" },
+          root_dir = require("lspconfig.util").root_pattern(".git"),
+          single_file_support = true,
+        }, ]]
+      },
+      -- detailed configurations of each LSP(bottom level)
+      setup = {
+        clangd = function(_, opts)
+          opts.capabilities.offsetEncoding = { "utf-16" }
+          opts.cmd = {
+            "clangd",
+            "--header-insertion=never",
+            "--clang-tidy",
+          }
+        end,
+        veridian = function()
+          require("lazyvim.util").lsp.on_attach(function(client, _)
+            if client.name == "veridian" then
+              -- disable hover of veridian
+              client.server_capabilities.hoverProvider = false
+            end
+          end)
+        end,
+      },
+    },
+  },
+  -- nvim-cmp
   {
     "nvim-cmp",
     opts = function(_, opts)
@@ -35,6 +123,7 @@ return {
   },
   {
     "tzachar/cmp-tabnine",
+    event = "InsertEnter",
     opts = {
       max_lines = 1000, -- how many lines used to predict for TabNine
       max_num_results = 5, --how many results to return
@@ -129,110 +218,4 @@ return {
   --     }
   --   end,
   -- },
-  -- Chatgpt
-  {
-    "jackMort/ChatGPT.nvim",
-    keys = {
-      { "<leader>Pe", "<cmd>chatgpteditwithinstructions<cr>", desc = "edit with instructions" },
-      { "<leader>Pc", "<cmd>ChatGPT<CR>", desc = "Chat" },
-    },
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    config = function()
-      require("chatgpt").setup({
-        -- yank_register = "+",
-        -- edit_with_instructions = {
-        --     diff = false,
-        --     keymaps = {
-        --         accept = "<C-y>",
-        --         toggle_diff = "<C-d>",
-        --         toggle_settings = "<C-o>",
-        --         cycle_windows = "<Tab>",
-        --         use_output_as_input = "<C-i>",
-        --     },
-        -- },
-        chat = {
-          keymaps = {
-            close = { "<C-c>" },
-            --         yank_last = "<C-y>",
-            --         yank_last_code = "<C-k>",
-            --         scroll_up = "<C-u>",
-            --         scroll_down = "<C-d>",
-            --         toggle_settings = "<C-o>",
-            --         new_session = "<C-n>",
-            --         cycle_windows = "<Tab>",
-            --         select_session = "<Space>",
-            --         rename_session = "r",
-            --         delete_session = "d",
-          },
-        },
-        popup_input = {
-          -- prompt = "  ", -- do not work, don't know why
-          submit = "<C-CR>",
-        },
-      })
-    end,
-  },
-  -- copilot.lua(in lazy.lua) is slow to load, use copilot.vim
-  -- {
-  --     "zbirenbaum/copilot.lua",
-  --     config = function()
-  --         require('copilot').setup({
-  --             panel = {
-  --                 enabled = true,
-  --                 auto_refresh = false,
-  --                 keymap = {
-  --                     jump_prev = "[[",
-  --                     jump_next = "]]",
-  --                     accept = "<CR>",
-  --                     refresh = "gr",
-  --                     open = "<M-CR>"
-  --                 },
-  --                 layout = {
-  --                     position = "bottom", -- | top | left | right
-  --                     ratio = 0.4
-  --                 },
-  --             },
-  --             suggestion = {
-  --                 enabled = true,
-  --                 auto_trigger = false,
-  --                 debounce = 75,
-  --                 keymap = {
-  --                     accept = "<M-l>",
-  --                     accept_word = false,
-  --                     accept_line = false,
-  --                     next = "<M-]>",
-  --                     prev = "<M-[>",
-  --                     dismiss = "<C-]>",
-  --                 },
-  --             },
-  --             filetypes = {
-  --                 yaml = false,
-  --                 markdown = false,
-  --                 help = false,
-  --                 gitcommit = false,
-  --                 gitrebase = false,
-  --                 hgcommit = false,
-  --                 svn = false,
-  --                 cvs = false,
-  --                 ["."] = false,
-  --             },
-  --             copilot_node_command = 'node', -- Node.js version must be > 16.x
-  --             server_opts_overrides = {},
-  --         })
-  --     end
-  -- },
-
-  -- use copilot.vim
-  {
-    "github/copilot.vim",
-    cmd = "Copilot",
-    build = ":Copilot setup",
-    keys = {
-      { "<leader>Ce", "<cmd>Copilot enable<CR>", desc = "Copilot enable" },
-    },
-  },
 }
