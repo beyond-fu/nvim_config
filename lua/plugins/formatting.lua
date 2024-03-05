@@ -1,7 +1,15 @@
 return {
   {
     "stevearc/conform.nvim",
-    enabled = false,
+    opts = function(_, opts)
+      -- config like below is also OK
+      -- opts.formatters_by_ft.python = { "autopep8" }
+      opts.formatters_by_ft = {
+        lua = { "stylua" },
+        python = { "autopep8" },
+        sh = { "shellcheck", "shfmt" },
+      }
+    end,
   },
   -- none-ls formatting tool(null-ls)
   {
@@ -12,12 +20,12 @@ return {
         or require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git")
       opts.sources = vim.list_extend(opts.sources or {}, {
         -- nls.builtins.formatting.yamlfmt,
-        nls.builtins.diagnostics.shellcheck, --static shell lint
+        -- nls.builtins.diagnostics.shellcheck, --static shell lint
         nls.builtins.formatting.shfmt, -- shell formatting
         nls.builtins.diagnostics.checkmake, -- Makefile lint
-        nls.builtins.formatting.autopep8.with({
-          extra_args = { "--max-line-length", "120" },
-        }), -- python formatting
+        -- nls.builtins.formatting.autopep8.with({
+        --   extra_args = { "--max-line-length", "120" },
+        -- }), -- python formatting
         nls.builtins.diagnostics.markdownlint,
         nls.builtins.formatting.markdownlint,
         nls.builtins.hover.printenv.with({

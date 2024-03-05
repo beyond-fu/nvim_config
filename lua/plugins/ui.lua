@@ -32,7 +32,6 @@ return {
   {
     "echasnovski/mini.animate",
     opts = function()
-      -- opts.cursor = { enable = false }
       -- don't use animate when scrolling with the mouse
       local mouse_scrolled = false
       for _, scroll in ipairs({ "Up", "Down" }) do
@@ -42,10 +41,11 @@ return {
           return key
         end, { expr = true })
       end
-
       local animate = require("mini.animate")
       return {
-        cursor = { enable = false },
+        cursor = {
+          enable = false,
+        },
         resize = {
           timing = animate.gen_timing.linear({ duration = 100, unit = "total" }),
         },
@@ -64,4 +64,23 @@ return {
       }
     end,
   },
+  -- {
+  --   "karb94/neoscroll.nvim",
+  --   enabled=false,
+  --   config = function()
+  --     require("neoscroll").setup({
+  --       mappings = {
+  --         "<C-u>",
+  --         "<C-d>",
+  --         "<C-b>",
+  --         "<C-f>",
+  --         "<C-y>",
+  --         "<C-e>",
+  --         "zt",
+  --         "zz",
+  --         "zb",
+  --       },
+  --     })
+  --   end,
+  -- },
 }
