@@ -172,9 +172,10 @@ return {
   {
     "numToStr/Comment.nvim",
     config = function()
-      require("Comment").setup({
-        ignore = "^$",
-      })
+      require("Comment").setup({ ignore = "^$" })
+      local ft = require("Comment.ft")
+      ft.verilog = { "//%s", "/*%s*/" }
+      ft.systemverilog = { "//%s", "/*%s*/" }
     end,
   },
   -- use copilot.vim

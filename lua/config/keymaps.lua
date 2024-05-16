@@ -19,6 +19,8 @@ vim.keymap.set("v", "<A-j>", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = tr
 vim.keymap.set({ "i", "n" }, "jk", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch", noremap = false })
 -- vim.keymap.set("n", "<F8>", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true, desc = "Toggle outline" })
 vim.keymap.set("n", "dc", "cc<ESC>", { noremap = true, silent = true, desc = "Delete current line & ESC" })
+vim.keymap.set("n", "dj", "dk", { noremap = true, silent = true, desc = "Up" })
+vim.keymap.set("n", "dk", "dj", { noremap = true, silent = true, desc = "Down" })
 vim.keymap.set(
   { "n" },
   "<A-\\>",
@@ -91,3 +93,38 @@ end, { desc = "delete all breakpoints" })
 
 -- open .zshrc
 vim.keymap.set("n", "gz", "<cmd>e ~/.zshrc<CR>", { noremap = true, desc = "Open .zshrc", silent = true })
+
+-- minimap
+vim.keymap.set("n", "<Leader>mo", "<cmd>lua MiniMap.open()<CR>", { noremap = true, desc = "Open Minimap" })
+vim.keymap.set("n", "<Leader>mc", "<cmd>lua MiniMap.close()<CR>", { noremap = true, desc = "Close Minimap" })
+vim.keymap.set("n", "<Leader>mr", "<cmd>lua MiniMap.refresh()<CR>", { noremap = true, desc = "Refresh Minimap" })
+vim.keymap.set("n", "<Leader>mf", "<cmd>lua MiniMap.toggle_focus()<CR>", { noremap = true, desc = "Focus Minimap" })
+
+-- todo-comments
+vim.keymap.set("n", "<Leader>sl", function()
+  local keywords = require("todo-comments.config").keywords
+  local num = 0
+  -- local kw = {}
+  for k, v in pairs(keywords) do
+    num = num + 1
+    -- kw[num] = k
+  end
+  print(num .. " TODOs supported")
+  -- for i = 1, #kw do
+  --   print(kw[i])
+  -- end
+end, { noremap = true, desc = "# of supported TODOs", silent = true })
+
+-- enable/disable diagnostic for current buffer
+vim.keymap.set(
+  "n",
+  "<Leader>cD",
+  "<cmd>lua vim.diagnostic.disable(0)<CR>",
+  { noremap = true, desc = "Disable diagnostic", silent = true }
+)
+vim.keymap.set(
+  "n",
+  "<Leader>ce",
+  "<cmd>lua vim.diagnostic.enable(0)<CR>",
+  { noremap = true, desc = "Enable diagnostic", silent = true }
+)

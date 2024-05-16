@@ -45,3 +45,6 @@ vim.g.copilot_proxy = "localhost:7890"
 vim.g.copilot_no_tab_map = true
 
 vim.g.netrw_browsex_viewer = "google-chrome"
+
+-- python LSP
+vim.g.lazyvim_python_lsp = "basedpyright"

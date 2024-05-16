@@ -27,7 +27,6 @@ return {
     opts = {
       -- manage integration of LSP and neovim(upper level, because of the existence of Mason)
       servers = {
-        pyright = {},
         -- use veridian to dot-completion, syntax lint(slang and verible), formatting(verible), veridian cannot hover define macro
         veridian = {
           cmd = { "veridian" },

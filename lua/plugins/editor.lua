@@ -1,5 +1,29 @@
 return {
-  --which-key
+  -- minimap
+  {
+    "echasnovski/mini.map",
+    -- version = false,
+    config = function()
+      local minimap = require("mini.map")
+      require("mini.map").setup({
+        integration = {
+          minimap.gen_integration.builtin_search(),
+          minimap.gen_integration.gitsigns(),
+          minimap.gen_integration.diagnostic(),
+        },
+        symbols = {
+          encode = nil,
+          scroll_line = "",
+          scroll_view = "",
+        },
+        window = {
+          focusable = true,
+          show_integration_count = false,
+        },
+      })
+    end,
+  },
+  -- which-key
   {
     "folke/which-key.nvim",
     opts = {
@@ -160,6 +184,12 @@ return {
   },
   {
     "folke/todo-comments.nvim",
+    -- config = function()
+    --   local conf = require("todo-comments.config")
+    --   for k, v in pairs(conf) do
+    --     print(k, v)
+    --   end
+    -- end,
     opts = {
       highlight = {
         multiline = true,
