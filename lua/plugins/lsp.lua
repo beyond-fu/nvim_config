@@ -25,6 +25,9 @@ return {
       keys[#keys + 1] = { "K", false }
     end,
     opts = {
+      inlay_hints = {
+        enabled = true,
+      },
       -- manage integration of LSP and neovim(upper level, because of the existence of Mason)
       servers = {
         -- use veridian to dot-completion, syntax lint(slang and verible), formatting(verible), veridian cannot hover define macro
@@ -66,14 +69,14 @@ return {
       },
       -- detailed configurations of each LSP(bottom level)
       setup = {
-        clangd = function(_, opts)
-          opts.capabilities.offsetEncoding = { "utf-16" }
-          opts.cmd = {
-            "clangd",
-            "--header-insertion=never",
-            "--clang-tidy",
-          }
-        end,
+        -- clangd = function(_, opts)
+        --   opts.capabilities.offsetEncoding = { "utf-16" }
+        --   opts.cmd = {
+        --     "clangd",
+        --     "--header-insertion=never",
+        --     "--clang-tidy",
+        --   }
+        -- end,
         veridian = function()
           require("lazyvim.util").lsp.on_attach(function(client, _)
             if client.name == "veridian" then
@@ -120,23 +123,23 @@ return {
       }
     end,
   },
-  {
-    "tzachar/cmp-tabnine",
-    event = "InsertEnter",
-    opts = {
-      max_lines = 1000, -- how many lines used to predict for TabNine
-      max_num_results = 5, --how many results to return
-      sort = true, -- Sort results by returned priority
-      run_on_every_keystroke = true,
-      snippet_placeholder = "..",
-      ignored_file_types = {
-        -- default is not to ignore
-        -- uncomment to ignore in lua:
-        -- lua = true
-      },
-      show_prediction_strength = false,
-    },
-  },
+  -- {
+  --   "tzachar/cmp-tabnine",
+  --   event = "InsertEnter",
+  --   opts = {
+  --     max_lines = 1000, -- how many lines used to predict for TabNine
+  --     max_num_results = 5, --how many results to return
+  --     sort = true, -- Sort results by returned priority
+  --     run_on_every_keystroke = true,
+  --     snippet_placeholder = "..",
+  --     ignored_file_types = {
+  --       -- default is not to ignore
+  --       -- uncomment to ignore in lua:
+  --       -- lua = true
+  --     },
+  --     show_prediction_strength = false,
+  --   },
+  -- },
   -- Tabnine(free version: line completion)
   -- {
   --   "nvim-cmp",

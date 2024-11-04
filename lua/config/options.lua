@@ -18,8 +18,6 @@ vim.opt.timeoutlen = 80
 
 -- for markdown-preview
 vim.g.mkdp_theme = "light"
-vim.o.scrolloff = 10
--- t/T of flit is same as f/F but with offset -1/1
 
 -- disable netrw
 vim.g.loaded_netrw = 1
@@ -48,3 +46,6 @@ vim.g.netrw_browsex_viewer = "google-chrome"
 
 -- python LSP
 vim.g.lazyvim_python_lsp = "basedpyright"
+
+-- lazyvim native fold
+-- vim.opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"

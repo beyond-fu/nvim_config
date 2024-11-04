@@ -29,6 +29,10 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   pattern = { "*.vh", "*.svh" },
   command = "set filetype=systemverilog",
 })
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  pattern = { "*.v" },
+  command = "set filetype=verilog",
+})
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   pattern = { "*.f" },

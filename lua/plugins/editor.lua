@@ -1,4 +1,22 @@
 return {
+  -- mini.move
+  {
+    "echasnovski/mini.move",
+    opts = {
+      mappings = {
+        -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+        left = "<M-h>",
+        right = "<M-l>",
+        down = "",
+        up = "",
+        -- Move current line in Normal mode
+        line_left = "<M-h>",
+        line_right = "<M-l>",
+        line_up = "",
+        line_down = "",
+      },
+    },
+  },
   -- minimap
   {
     "echasnovski/mini.map",
@@ -27,13 +45,16 @@ return {
   {
     "folke/which-key.nvim",
     opts = {
-      defaults = {
-        ["<leader>u"] = { name = "+ui/undo-tree" },
-        ["<leader>P"] = { name = "ChatGPT" },
-        ["<leader>t"] = { name = "Tabnine" },
-        ["<leader>C"] = { name = "Copilot" },
+      spec = {
+        {
+          mode = { "n", "v" },
+          { "<leader>u", desc = "+ui/undo-tree" },
+          { "<leader>P", desc = "ChatGPT" },
+          { "<leader>t", desc = "Tabnine" },
+          { "<leader>C", desc = "Copilot" },
+        },
       },
-      window = {
+      win = {
         border = "single",
       },
     },

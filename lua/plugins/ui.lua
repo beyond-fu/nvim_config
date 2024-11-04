@@ -1,5 +1,29 @@
 return {
   {
+    -- this is a folk repo of "sunjon/Shade.nvim", fixed mason window bug
+    "andreadev-it/Shade.nvim",
+    opts = {},
+  },
+  {
+    "psliwka/vim-smoothie",
+    init = function()
+      vim.g.smoothie_enabled = 1
+      vim.g.smoothie_experimental_mappings = 1
+    end,
+  },
+  {
+    "echasnovski/mini.files",
+    opts = {
+      windows = {
+        preview = false,
+        -- Width of focused window
+        width_focus = 50,
+        -- Width of non-focused window
+        width_nofocus = 15,
+      },
+    },
+  },
+  {
     "b0o/incline.nvim",
     config = function()
       local helpers = require("incline.helpers")
@@ -32,6 +56,7 @@ return {
   -- make each window eye-catching
   {
     "nvim-zh/colorful-winsep.nvim",
+    enabled = false,
     config = true,
     event = { "WinNew" },
     opts = {
@@ -73,6 +98,7 @@ return {
   -- config scroll animation
   {
     "echasnovski/mini.animate",
+    enabled = false,
     opts = function()
       -- don't use animate when scrolling with the mouse
       local mouse_scrolled = false
@@ -106,23 +132,4 @@ return {
       }
     end,
   },
-  -- {
-  --   "karb94/neoscroll.nvim",
-  --   enabled=false,
-  --   config = function()
-  --     require("neoscroll").setup({
-  --       mappings = {
-  --         "<C-u>",
-  --         "<C-d>",
-  --         "<C-b>",
-  --         "<C-f>",
-  --         "<C-y>",
-  --         "<C-e>",
-  --         "zt",
-  --         "zz",
-  --         "zb",
-  --       },
-  --     })
-  --   end,
-  -- },
 }

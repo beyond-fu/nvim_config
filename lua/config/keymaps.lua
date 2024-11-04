@@ -14,8 +14,8 @@ vim.keymap.set("n", "<A-k>", "<cmd>m .+1<cr>==", { noremap = true, desc = "Move 
 vim.keymap.set("n", "<A-j>", "<cmd>m .-2<cr>==", { noremap = true, desc = "Move up", silent = true })
 vim.keymap.set("i", "<A-k>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down", silent = true })
 vim.keymap.set("i", "<A-j>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up", silent = true })
-vim.keymap.set("v", "<A-k>", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
-vim.keymap.set("v", "<A-j>", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
+-- vim.keymap.set("v", "<A-k>", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
+-- vim.keymap.set("v", "<A-j>", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
 vim.keymap.set({ "i", "n" }, "jk", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch", noremap = false })
 -- vim.keymap.set("n", "<F8>", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true, desc = "Toggle outline" })
 vim.keymap.set("n", "dc", "cc<ESC>", { noremap = true, silent = true, desc = "Delete current line & ESC" })
@@ -100,6 +100,11 @@ vim.keymap.set("n", "<Leader>mc", "<cmd>lua MiniMap.close()<CR>", { noremap = tr
 vim.keymap.set("n", "<Leader>mr", "<cmd>lua MiniMap.refresh()<CR>", { noremap = true, desc = "Refresh Minimap" })
 vim.keymap.set("n", "<Leader>mf", "<cmd>lua MiniMap.toggle_focus()<CR>", { noremap = true, desc = "Focus Minimap" })
 
+-- gitsigns
+vim.keymap.set("n", "<leader>tb", function()
+  require("gitsigns").toggle_current_line_blame()
+end, { noremap = true, desc = "Toggle Inline Blame", silent = true })
+
 -- todo-comments
 vim.keymap.set("n", "<Leader>sl", function()
   local keywords = require("todo-comments.config").keywords
@@ -128,3 +133,7 @@ vim.keymap.set(
   "<cmd>lua vim.diagnostic.enable(0)<CR>",
   { noremap = true, desc = "Enable diagnostic", silent = true }
 )
+
+-- MiniMove
+vim.keymap.set("x", "<M-j>", '<cmd>lua MiniMove.move_selection("up")<CR>', { desc = "MiniMove up" })
+vim.keymap.set("x", "<M-k>", '<cmd>lua MiniMove.move_selection("down")<CR>', { desc = "MiniMove down" })

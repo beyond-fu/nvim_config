@@ -1,4 +1,21 @@
 return {
+  {
+    "beyond-fu/AutoHeader.nvim",
+    event = "BufRead",
+    opts = {
+      length = 100,
+      copyright = true,
+      description = true,
+      git = { enabled = true },
+    },
+  },
+  -- v/sv autoinst plugin
+  {
+    "mingo99/verilog-autoinst.nvim",
+    cmd = "AutoInst",
+    keys = { { "<leader>fv", "<cmd>AutoInst<cr>", desc = "Automatic instantiation for verilog" } },
+    dependencies = { "nvim-telescope/telescope.nvim" },
+  },
   -- add my own snippets to LuaSnip
   {
     "L3MON4D3/LuaSnip",
@@ -6,7 +23,7 @@ return {
       "rafamadriz/friendly-snippets",
       config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
-        require("luasnip.loaders.from_lua").lazy_load({ paths = "~/nvim_config/lua/snippets/" })
+        require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/nvim_config/lua/snippets/" } })
       end,
     },
   },
@@ -26,14 +43,14 @@ return {
         },
         commands = {
           show_fs_stat = function(state)
-            local utils = require("utils.utils")
+            local file_info = require("utils.file_info")
             local node = state.tree:get_node()
             local stat = vim.loop.fs_stat(node.path)
             local str = ""
             str = str .. string.format("Type: %s\n", stat.type)
-            str = str .. string.format("Size: %s\n", utils.format_size(stat.size))
-            str = str .. string.format("Time: %s\n", utils.format_time(stat.mtime.sec))
-            str = str .. string.format("Mode: %s\n", utils.format_mode(stat.mode, stat.type))
+            str = str .. string.format("Size: %s\n", file_info.format_size(stat.size))
+            str = str .. string.format("Time: %s\n", file_info.format_time(stat.mtime.sec))
+            str = str .. string.format("Mode: %s\n", file_info.format_mode(stat.mode, stat.type))
             vim.notify(str)
           end,
         },
@@ -85,7 +102,6 @@ return {
   -- nvim-ufo, code fold tool
   {
     "kevinhwang91/nvim-ufo",
-    commit = "1c3eb7e3980246c432a037acbead2f0b0f0e2fa5",
     dependencies = {
       "kevinhwang91/promise-async",
       -- {
@@ -140,7 +156,7 @@ return {
       end
       require("ufo").setup({
         open_fold_hl_timeout = 100,
-        close_fold_kinds = { "imports", "comment" },
+        close_fold_kinds_for_ft = { default = { "imports", "comment" } },
         fold_virt_text_handler = handler, -- customize the function about how to display folded content
         preview = {
           win_config = {
@@ -162,11 +178,6 @@ return {
         end,
       })
     end,
-  },
-  -- not use mini.commment
-  {
-    "echasnovski/mini.comment",
-    enabled = false,
   },
   -- current comment tool
   {

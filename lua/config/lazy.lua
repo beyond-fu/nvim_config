@@ -20,21 +20,29 @@ require("lazy").setup({
     --     },
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
-    -- { import = "lazyvim.plugins.extras.lang.typescript" },
-    -- { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.coding.mini-surround" },
+    { import = "lazyvim.plugins.extras.coding.yanky" },
+    { import = "lazyvim.plugins.extras.coding.tabnine" },
+    { import = "lazyvim.plugins.extras.coding.luasnip" },
+    { import = "lazyvim.plugins.extras.dap.core" },
+    { import = "lazyvim.plugins.extras.editor.inc-rename" },
+    { import = "lazyvim.plugins.extras.editor.mini-move" },
+    -- { import = "lazyvim.plugins.extras.editor.mini-diff" }, -- enabling this will disable gitsigns.nvim
+    { import = "lazyvim.plugins.extras.editor.mini-files" },
     { import = "lazyvim.plugins.extras.editor.navic" },
+    { import = "lazyvim.plugins.extras.editor.outline" },
+    { import = "lazyvim.plugins.extras.editor.harpoon2" },
+    { import = "lazyvim.plugins.extras.editor.illuminate" },
+    { import = "lazyvim.plugins.extras.formatting.prettier" },
     { import = "lazyvim.plugins.extras.lang.markdown" },
+    { import = "lazyvim.plugins.extras.lang.clangd" },
     { import = "lazyvim.plugins.extras.lang.yaml" },
     { import = "lazyvim.plugins.extras.lang.python" },
     { import = "lazyvim.plugins.extras.lang.rust" },
-    { import = "lazyvim.plugins.extras.editor.outline" },
-    { import = "lazyvim.plugins.extras.editor.harpoon2" },
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
-    { import = "lazyvim.plugins.extras.coding.yanky" },
-    { import = "lazyvim.plugins.extras.dap.core" },
-    { import = "lazyvim.plugins.extras.coding.tabnine" },
-    { import = "lazyvim.plugins.extras.formatting.prettier" },
     { import = "lazyvim.plugins.extras.lsp.none-ls" },
+    { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
+    { import = "lazyvim.plugins.extras.ui.treesitter-context" },
     -- import/override with your plugins
     { import = "plugins" },
   },
@@ -71,5 +79,3 @@ require("lazy").setup({
 vim.api.nvim_set_hl(0, "MatchParen", { bold = true, fg = "#ff9e64", bg = "#767676" })
 vim.api.nvim_set_hl(0, "Comment", { italic = true, ctermfg = 243, fg = "#767676" })
 vim.api.nvim_set_hl(0, "Keyword", { italic = true, ctermfg = 139, fg = "#af87af" })
--- Greying out the search area(Leap)
--- vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
